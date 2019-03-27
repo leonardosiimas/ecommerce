@@ -70,7 +70,7 @@ class User extends Model {
 		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
 			":LOGIN"=>$login
 		)); 
-
+ 
 		if (count($results) === 0)
 		{
 			throw new \Exception("Usuário inexistente ou senha inválida.");
@@ -176,7 +176,7 @@ class User extends Model {
 			":deslogin"=>$this->getdeslogin(),
 			":despassword"=>User::getPasswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
-			":nrphone"=>$this->getnrphone(),
+			":nrphone"=>(int)$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
 		));
 
